@@ -1,5 +1,6 @@
 ﻿using _Project.CodeBase.Infrastructure.SceneManagement.UI;
 using _Project.Scripts.Infrastructure.SceneManagement;
+using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Services.AssetManagement;
 using Cysharp.Threading.Tasks;
 
@@ -9,12 +10,17 @@ namespace CodeBase.Infrastructure.States
     {
         private readonly ILoadingCurtain _loadingCurtain;
         private readonly ISceneLoader _sceneLoader;
+        private readonly IAssetProvider _assetProvider;
         private readonly GameStateMachine _gameStateMachine;
 
-        public GameHubState(ILoadingCurtain loadingCurtain, ISceneLoader sceneLoader, GameStateMachine gameStateMachine)
+        public GameHubState(ILoadingCurtain loadingCurtain, 
+            ISceneLoader sceneLoader, 
+            IAssetProvider assetProvider,
+            GameStateMachine gameStateMachine)
         {
             _loadingCurtain = loadingCurtain;
             _sceneLoader = sceneLoader;
+            _assetProvider = assetProvider;
             _gameStateMachine = gameStateMachine;
         }
         
@@ -22,6 +28,7 @@ namespace CodeBase.Infrastructure.States
         {
             _loadingCurtain.Show();
             
+            await _assetProvider.WarmupAssetsByLabel(AssetName.Lables.GameHubState);
             await _sceneLoader.Load(AssetName.Scenes.GameHubScene);
             _gameStateMachine.Enter<GameLoopState>();
             
@@ -32,7 +39,7 @@ namespace CodeBase.Infrastructure.States
         {
             _loadingCurtain.Show();
             
-            await UniTask.DelayFrame(1);
+            await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.GameHubState);
         }
     }
 }
