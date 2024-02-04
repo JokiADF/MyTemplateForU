@@ -1,3 +1,5 @@
+using UnityEngine.AddressableAssets;
+
 namespace CodeBase.Services.AssetManagement
 {
     public static class AssetName
@@ -21,17 +23,11 @@ namespace CodeBase.Services.AssetManagement
         {
             public const string Player = "Player";
             public const string Enemy = "Enemy";
-            public const string Ball = "Ball";
-            public const string Explosion = "Explosion";
         }
 
         public class UI
         {
-            public const string Menu = "Menu";
-            public const string Scores = "Scores";
-            public const string Gameplay = "Gameplay";
-            public const string Input = "Input";
-            public const string Results = "Results";
+            public static string HUD = "HUD";
         }
 
         public class Audio
@@ -44,7 +40,7 @@ namespace CodeBase.Services.AssetManagement
 
         public class Materials
         {
-            public const string Background = "Space";
+            public const string Background = "Background";
         }
     }
 }
