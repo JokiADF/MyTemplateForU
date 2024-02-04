@@ -1,5 +1,6 @@
 ﻿using _Project.CodeBase.Infrastructure.SceneManagement.UI;
 using _Project.Scripts.Infrastructure.SceneManagement;
+using CodeBase.Services.AssetManagement;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Infrastructure.States
@@ -19,7 +20,7 @@ namespace CodeBase.Infrastructure.States
         {
             _loadingCurtain.Show();
             
-            await _sceneLoader.Load("3GameLoop");
+            await _sceneLoader.Load(AssetName.Scenes.GameLoopScene);
             
             _loadingCurtain.Hide();
         }
