@@ -27,8 +27,8 @@ public class ProjectInstaller : MonoInstaller
         var loadingCurtain = Instantiate(prefab);
         
         Container
-            .BindInterfacesAndSelfTo<LoadingCurtainProxy>()
-            .FromInstance(new LoadingCurtainProxy(loadingCurtain))
+            .BindInterfacesAndSelfTo<LoadingCurtain>()
+            .FromInstance(loadingCurtain)
             .AsSingle();
     }
 
