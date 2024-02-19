@@ -15,18 +15,18 @@ namespace _Project.CodeBase.UI.Services.Screens
         public ScreenService(IUIFactory uiFactory) => 
             _uiFactory = uiFactory;
 
-        public async void Open(ScreenId screenId)
+        public void Open(ScreenId screenId)
         {
             var window = GetWindow(screenId);
-            ChangeActiveWindow(await window);
+            ChangeActiveWindow(window);
         }
 
-        private async UniTask<ScreenBase> GetWindow(ScreenId screenId)
+        private ScreenBase GetWindow(ScreenId screenId)
         {
             if (_windows.TryGetValue(screenId, out var window)) 
                 return window;
 
-            _windows.Add(screenId, await _uiFactory.CreateWindow(screenId));
+            _windows.Add(screenId, _uiFactory.CreateWindow(screenId));
             return _windows[screenId];
         }
 

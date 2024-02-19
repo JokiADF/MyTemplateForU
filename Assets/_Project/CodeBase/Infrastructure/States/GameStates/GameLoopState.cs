@@ -44,8 +44,10 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
         {
             _loadingCurtain.Show();
             
-            _poolingService.Cleanup();
             await _assetProvider.ReleaseAssetsByLabel(AssetName.Lables.GameLoopState);
+            
+            _poolingService.Cleanup();
+            _assetProvider.Cleanup();
         }
     }
 }

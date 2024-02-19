@@ -8,14 +8,12 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
 {
     public class GameHubState : IState
     {
-        private readonly GameStateMachine _gameStateMachine;
         private readonly ILoadingCurtain _loadingCurtain;
         private readonly ISceneLoader _sceneLoader;
         private readonly IAssetProvider _assetProvider;
         private readonly IScreenService _screenService;
 
-        public GameHubState(GameStateMachine gameStateMachine,
-            ILoadingCurtain loadingCurtain, 
+        public GameHubState(ILoadingCurtain loadingCurtain, 
             ISceneLoader sceneLoader, 
             IAssetProvider assetProvider,
             IScreenService screenService)
@@ -23,7 +21,6 @@ namespace _Project.CodeBase.Infrastructure.States.GameStates
             _loadingCurtain = loadingCurtain;
             _sceneLoader = sceneLoader;
             _assetProvider = assetProvider;
-            _gameStateMachine = gameStateMachine;
             _screenService = screenService;
         }
         

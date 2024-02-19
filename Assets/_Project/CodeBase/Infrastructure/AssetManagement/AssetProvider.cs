@@ -13,6 +13,14 @@ namespace _Project.CodeBase.Infrastructure.AssetManagement
         public async UniTask InitializeAsync() => 
             await Addressables.InitializeAsync().ToUniTask();
 
+        public T Get<T>(string key)
+        {
+            if (string.IsNullOrEmpty(key) || !_assetRequests.TryGetValue(key, out var handle))
+                return default; 
+            
+            return handle.Result is T result ? result : default;
+        }
+
         public async UniTask<TAsset> Load<TAsset>(string key) where TAsset : class
         {
             if (!_assetRequests.TryGetValue(key, out var handle))

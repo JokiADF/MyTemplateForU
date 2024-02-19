@@ -2,7 +2,6 @@
 using _Project.CodeBase.Services.Log;
 using _Project.CodeBase.UI.Screens;
 using _Project.CodeBase.UI.Services.Screens;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -25,10 +24,10 @@ namespace _Project.CodeBase.UI.Services.Factory
             _log = log;
         }
 
-        public async void CreateUIRoot() => 
-            _uiRoot = (await InstantiatePrefab(AssetName.UI.Root)).transform;
+        public void CreateUIRoot() => 
+            _uiRoot = InstantiatePrefab(AssetName.UI.Root).transform;
 
-        public async UniTask<ScreenBase> CreateWindow(ScreenId screenId)
+        public ScreenBase CreateWindow(ScreenId screenId)
         {
             string assetName = default;
 
@@ -40,21 +39,21 @@ namespace _Project.CodeBase.UI.Services.Factory
                 default: _log.LogError("Not correct id"); break;
             }
             
-            var screen = await InstantiatePrefabForComponent<ScreenBase>(assetName, _uiRoot);
+            var screen = InstantiatePrefabForComponent<ScreenBase>(assetName, _uiRoot);
             
             return screen;
         }
 
-        private async UniTask<GameObject> InstantiatePrefab(string assetName)
+        private GameObject InstantiatePrefab(string assetName)
         {
-            var prefab = await _assets.Load<GameObject>(assetName);
+            var prefab = _assets.Get<GameObject>(assetName);
             return _instantiator.InstantiatePrefab(prefab);
         }
         
-        private async UniTask<TComponent> InstantiatePrefabForComponent<TComponent>(string assetName, Transform parent = null)
+        private TComponent InstantiatePrefabForComponent<TComponent>(string assetName, Transform parent = null)
             where TComponent : MonoBehaviour
         {
-            var prefab = await _assets.Load<GameObject>(assetName);
+            var prefab = _assets.Get<GameObject>(assetName);
             return _instantiator.InstantiatePrefabForComponent<TComponent>(prefab, parent);
         }
     }

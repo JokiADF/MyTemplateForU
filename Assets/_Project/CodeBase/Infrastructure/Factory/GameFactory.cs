@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using _Project.CodeBase.Infrastructure.AssetManagement;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -17,13 +15,17 @@ namespace _Project.CodeBase.Infrastructure.Factory
             _assets = assets;
         }
 
-        public async UniTask<GameObject> CreateHUD() => 
-            await InstantiatePrefab(AssetName.UI.HUD);
-
-        private async Task<GameObject> InstantiatePrefab(string assetName)
+        private GameObject InstantiatePrefab(string assetName)
         {
-            var prefab = await _assets.Load<GameObject>(assetName);
+            var prefab = _assets.Get<GameObject>(assetName);
             return _instantiator.InstantiatePrefab(prefab);
+        }
+        
+        private TComponent InstantiatePrefabForComponent<TComponent>(string assetName)
+            where TComponent : MonoBehaviour
+        {
+            var prefab = _assets.Get<GameObject>(assetName);
+            return _instantiator.InstantiatePrefabForComponent<TComponent>(prefab);
         }
     }
 }
