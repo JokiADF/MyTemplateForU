@@ -40,7 +40,8 @@ MonoBehaviour:
   - m_GUID: bc5d8dab0ff3f254798088c49a15e52c
     m_Address: HUD
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameLoopState
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1878c251bdf621845927110092a71eda, type: 2}
   m_SchemaSet:

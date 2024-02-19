@@ -12,9 +12,9 @@ namespace _Project.CodeBase.Infrastructure.AssetManagement
 
         public class Scenes
         {
-            public const string GameLoadingScene = "1GameLoading";
-            public const string GameHubScene = "2GameHub";
-            public const string GameLoopScene = "3GameLoop";
+            public const string GameLoadingScene = "1.GameLoading";
+            public const string GameHubScene = "2.GameHub";
+            public const string GameLoopScene = "3.GameLoop";
         }
 
         public class UI
