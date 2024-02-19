@@ -18,17 +18,17 @@ MonoBehaviour:
   m_GUID: 3f484b85250312f4daf8af57c8dde5ef
   m_SerializeEntries:
   - m_GUID: 6a4f738fba4329b4183dfca962d49486
-    m_Address: 1GameLoading
+    m_Address: 1.GameLoading
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scenes
   - m_GUID: a58ad785bcff82e40af8b09c1a5f65f8
-    m_Address: 2GameHub
+    m_Address: 2.GameHub
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scenes
   - m_GUID: e4e573019fb004842afc8f358774a6de
-    m_Address: 3GameLoop
+    m_Address: 3.GameLoop
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scenes
