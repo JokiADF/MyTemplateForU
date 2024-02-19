@@ -8,38 +8,40 @@ namespace _Project.CodeBase.Services.Pool
 {
     public struct Pool
     {
-        private readonly GameObject _prefab;
+        private readonly PoolObject _prefab;
         private readonly IInstantiator _instantiator;
 
-        private readonly Queue<GameObject> _objects;
+        private readonly Queue<PoolObject> _objects;
         private readonly Lazy<Scene> _rootScene;
         
-        public Pool(GameObject prefab, IInstantiator instantiator)
+        public Pool(PoolObject prefab, IInstantiator instantiator)
         {
             _prefab = prefab;
             _instantiator = instantiator;
             
-            _objects = new Queue<GameObject>();
+            _objects = new Queue<PoolObject>();
             _rootScene = new Lazy<Scene>(() => SceneManager.CreateScene($"[Pool] {prefab.name}"));
         }
         
-        public GameObject Spawn(Transform parent)
+        public PoolObject Spawn(Transform parent, Vector3 spawnPosition)
         {
             if (!_objects.TryDequeue(out var result))
-                result = _instantiator.InstantiatePrefab(_prefab);
+                result = _instantiator.InstantiatePrefabForComponent<PoolObject>(_prefab);
             
             result.transform.SetParent(parent, false);
-            result.SetActive(true);
+            result.gameObject.SetActive(true);
+            result.OnSpawned(spawnPosition);
             
             return result;
         }
 
-        public void Despawn(GameObject gameObject)
+        public void Despawn(PoolObject poolObject)
         {
-            gameObject.SetActive(false);
-            SceneManager.MoveGameObjectToScene(gameObject, _rootScene.Value);
+            poolObject.OnDespawned();
+            poolObject.gameObject.SetActive(false);
+            SceneManager.MoveGameObjectToScene(poolObject.gameObject, _rootScene.Value);
             
-            _objects.Enqueue(gameObject);
+            _objects.Enqueue(poolObject);
         }
 
         public void Cleanup()

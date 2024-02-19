@@ -13,33 +13,34 @@ namespace _Project.CodeBase.Services.Pool
         public PoolingService(IInstantiator instantiator) => 
             _instantiator = instantiator;
 
-        public TComponent Spawn<TComponent>(TComponent prefab, Transform parent = null) where TComponent : MonoBehaviour
+        public TComponent SpawnForComponent<TComponent>(TComponent prefab, Vector3 spawnPosition,
+            Transform parent = null) where TComponent : PoolObject
         {
-            var spawnedObject = Spawn(prefab.gameObject, parent);
+            var spawnedObject = Spawn(prefab, spawnPosition, parent);
             return spawnedObject.GetComponent<TComponent>();
         }
 
-        public GameObject Spawn(GameObject prefab, Transform parent = null)
+        public PoolObject Spawn(PoolObject prefab, Vector3 spawnPosition, Transform parent = null)
         {
             var prefabId = prefab.GetInstanceID();
 
             if (!_usablePools.TryGetValue(prefabId, out var pool)) 
                 pool = CreateNewPool(prefab, prefabId);
-
-            _storablePools.Add(prefabId, pool);
             
-            var instance = pool.Spawn(parent);
+            var instance = pool.Spawn(parent, spawnPosition);
+            _storablePools.Add(instance.GetInstanceID(), pool);
+            
             return instance;
         }
 
-        public void Despawn(GameObject gameObject)
+        public void Despawn(PoolObject poolObject)
         {
-            var instanceID = gameObject.GetInstanceID();
+            var instanceID = poolObject.GetInstanceID();
             
             if(_storablePools.TryGetValue(instanceID, out var pool))
             {
                 _storablePools.Remove(instanceID);
-                pool.Despawn(gameObject);
+                pool.Despawn(poolObject);
             }
         }
         
@@ -52,7 +53,7 @@ namespace _Project.CodeBase.Services.Pool
             _storablePools.Clear();
         }
 
-        private Pool CreateNewPool(GameObject prefab, int prefabId)
+        private Pool CreateNewPool(PoolObject prefab, int prefabId)
         {
             var pool = new Pool(prefab, _instantiator);
             _usablePools.Add(prefabId, pool);
