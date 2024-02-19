@@ -5,6 +5,7 @@ namespace _Project.CodeBase.Infrastructure.AssetManagement
         public class Lables
         {
             public const string Configs = "Configs";
+            public const string Audio = "Audio";
             public const string GameLoadingState = "GameLoadingState";
             public const string GameHubState = "GameHubState";
             public const string GameLoopState = "GameLoopState";
