@@ -21,13 +21,13 @@ namespace _Project.CodeBase.Services.SaveLoad
         public void SaveProgress()
         {
             foreach (var saver in _saverServices) 
-                saver.UpdateProgress(_persistentProgressService.Progress);
+                saver.UpdateProgress(_persistentProgressService.Config);
             
-            PlayerPrefs.SetString(ProgressKey, _persistentProgressService.Progress.ToJson());
+            PlayerPrefs.SetString(ProgressKey, _persistentProgressService.Config.ToJson());
         }
 
-        public PlayerProgress LoadProgress() => 
-            PlayerPrefs.GetString(ProgressKey)?.ToDeserialized<PlayerProgress>();
+        public PlayerConfig LoadProgress() => 
+            PlayerPrefs.GetString(ProgressKey)?.ToDeserialized<PlayerConfig>();
         
     }
 }

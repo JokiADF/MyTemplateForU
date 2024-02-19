@@ -5,6 +5,6 @@ namespace _Project.CodeBase.Services.SaveLoad
     public interface ISaveLoadService
     {
         void SaveProgress();
-        PlayerProgress LoadProgress();
+        PlayerConfig LoadProgress();
     }
 }

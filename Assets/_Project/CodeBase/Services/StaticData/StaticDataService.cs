@@ -11,9 +11,9 @@ namespace _Project.CodeBase.Services.StaticData
     {
         private readonly IAssetProvider _assetProvider;
         private readonly ILogService _logService;
-
-        private PlayerConfig _player;
-        private Dictionary<int, LevelConfig> _levels;
+        
+        public PlayerConfig Player { get; private set; }
+        public Dictionary<int, LevelConfig> Levels { get; private set; }
 
         public StaticDataService(IAssetProvider assetProvider, ILogService logService)
         {
@@ -33,12 +33,12 @@ namespace _Project.CodeBase.Services.StaticData
             
             _logService.Log("Static data loaded");
         }
-        
+
         private async UniTask LoadPlayerConfig()
         {
             var configs = await GetConfigs<PlayerConfig>();
             if(configs.Length > 0)
-                _player = configs.First();
+                Player = configs.First();
             else
                 _logService.LogError("There are no player config founded!");
         }
@@ -46,7 +46,7 @@ namespace _Project.CodeBase.Services.StaticData
         private async UniTask LoadLevelConfigs()
         {
             var configs = await GetConfigs<LevelConfig>();
-            _levels = configs.ToDictionary(config => config.level, config => config);
+            Levels = configs.ToDictionary(config => config.level, config => config);
         }
 
         private async UniTask<TConfig[]> GetConfigs<TConfig>() where TConfig : class

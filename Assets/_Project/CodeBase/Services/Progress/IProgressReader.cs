@@ -1,9 +1,7 @@
-﻿using _Project.CodeBase.Data;
-
-namespace _Project.CodeBase.Services.Progress
+﻿namespace _Project.CodeBase.Services.Progress
 {
     public interface IProgressReader
     {
-        void LoadProgress(PlayerProgress progress);
+        void LoadProgress(Data.Progress progress);
     }
 }

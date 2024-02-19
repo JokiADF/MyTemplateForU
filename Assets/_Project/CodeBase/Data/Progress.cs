@@ -1,6 +1,6 @@
 ﻿namespace _Project.CodeBase.Data
 {
-    public class PlayerProgress
+    public class Progress
     {
         
     }

@@ -2,6 +2,6 @@
 {
     public interface IPersistentProgressService
     {
-        Data.PlayerProgress Progress { get; set; }
+        Data.Progress Config { get; }
     }
 }
