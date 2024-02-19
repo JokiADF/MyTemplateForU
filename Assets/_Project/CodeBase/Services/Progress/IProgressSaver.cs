@@ -1,6 +1,6 @@
 ﻿using _Project.CodeBase.Data;
 
-namespace CodeBase.Services.PlayerProgressService
+namespace _Project.CodeBase.Services.Progress
 {
     public interface IProgressSaver : IProgressReader
     {

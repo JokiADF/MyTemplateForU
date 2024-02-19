@@ -1,7 +1,6 @@
 ﻿using _Project.CodeBase.Data;
-using _Project.CodeBase.Services.Progress;
 
-namespace CodeBase.Services.PlayerProgressService
+namespace _Project.CodeBase.Services.Progress
 {
     public class PersistentProgressService : IPersistentProgressService
     {

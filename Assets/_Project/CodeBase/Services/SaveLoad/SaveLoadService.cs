@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using _Project.CodeBase.Data;
 using _Project.CodeBase.Services.Progress;
-using CodeBase.Services.PlayerProgressService;
 using UnityEngine;
 
 namespace _Project.CodeBase.Services.SaveLoad

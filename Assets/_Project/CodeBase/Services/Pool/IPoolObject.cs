@@ -1,6 +1,4 @@
-﻿using _Project.CodeBase.Services.Pool;
-
-namespace _Project.Scripts.Infrastructure.PoolManagement
+﻿namespace _Project.CodeBase.Services.Pool
 {
     public interface IPoolObject
     {

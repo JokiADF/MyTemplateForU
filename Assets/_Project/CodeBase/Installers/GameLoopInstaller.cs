@@ -1,12 +1,11 @@
-using _Project.CodeBase.Services.Pool;
 using Zenject;
 
-public class GameLoopInstaller : MonoInstaller
+namespace _Project.CodeBase.Installers
 {
-    public override void InstallBindings()
+    public class GameLoopInstaller : MonoInstaller
     {
-        Container
-            .BindInterfacesAndSelfTo<PoolingService>()
-            .AsSingle();
+        public override void InstallBindings()
+        {
+        }
     }
 }

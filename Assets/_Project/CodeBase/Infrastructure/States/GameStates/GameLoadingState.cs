@@ -1,27 +1,28 @@
-﻿using _Project.CodeBase.Infrastructure.SceneManagement.UI;
-using _Project.Scripts.Infrastructure.SceneManagement;
-using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Services.AssetManagement;
+﻿using _Project.CodeBase.Infrastructure.AssetManagement;
+using _Project.CodeBase.Infrastructure.SceneManagement;
+using _Project.CodeBase.Infrastructure.SceneManagement.UI;
+using _Project.CodeBase.UI.Services.Factory;
+using _Project.CodeBase.UI.Services.Screens;
 using Cysharp.Threading.Tasks;
 
-namespace CodeBase.Infrastructure.States
+namespace _Project.CodeBase.Infrastructure.States.GameStates
 {
     public class GameLoadingState : IState
     {
+        private readonly GameStateMachine _gameStateMachine;
         private readonly ILoadingCurtain _loadingCurtain;
         private readonly ISceneLoader _sceneLoader;
         private readonly IAssetProvider _assetProvider;
-        private readonly GameStateMachine _gameStateMachine;
 
-        public GameLoadingState(ILoadingCurtain loadingCurtain, 
+        public GameLoadingState(GameStateMachine gameStateMachine,
+            ILoadingCurtain loadingCurtain, 
             ISceneLoader sceneLoader, 
-            IAssetProvider assetProvider,
-            GameStateMachine gameStateMachine)
+            IAssetProvider assetProvider)
         {
+            _gameStateMachine = gameStateMachine;
             _loadingCurtain = loadingCurtain;
             _sceneLoader = sceneLoader;
             _assetProvider = assetProvider;
-            _gameStateMachine = gameStateMachine;
         }
         
         public async void Enter()
@@ -30,6 +31,7 @@ namespace CodeBase.Infrastructure.States
             
             await _assetProvider.WarmupAssetsByLabel(AssetName.Lables.GameLoadingState);
             await _sceneLoader.Load(AssetName.Scenes.GameLoadingScene);
+            
             _gameStateMachine.Enter<GameHubState>();
             
             _loadingCurtain.Hide();

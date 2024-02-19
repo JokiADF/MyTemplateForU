@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Services.AssetManagement;
-using CodeBase.Services.LogService;
-using CodeBase.Services.StaticDataService.Configs;
+using _Project.CodeBase.Infrastructure.AssetManagement;
+using _Project.CodeBase.Services.Log;
+using _Project.CodeBase.Services.StaticData.Configs;
 using Cysharp.Threading.Tasks;
 
-namespace CodeBase.Services.StaticDataService
+namespace _Project.CodeBase.Services.StaticData
 {
     public class StaticDataService : IStaticDataService
     {

@@ -1,6 +1,4 @@
-using UnityEngine.AddressableAssets;
-
-namespace CodeBase.Services.AssetManagement
+namespace _Project.CodeBase.Infrastructure.AssetManagement
 {
     public static class AssetName
     {
@@ -18,16 +16,12 @@ namespace CodeBase.Services.AssetManagement
             public const string GameHubScene = "2GameHub";
             public const string GameLoopScene = "3GameLoop";
         }
-        
-        public class Objects
-        {
-            public const string Player = "Player";
-            public const string Enemy = "Enemy";
-        }
 
         public class UI
         {
-            public static string HUD = "HUD";
+            public const string Root = "Root";
+            public const string HUD = "HUD";
+            public const string Menu = "Menu";
         }
 
         public class Audio
@@ -36,11 +30,6 @@ namespace CodeBase.Services.AssetManagement
             public const string Music = "Music";
             public const string Clash = "Clash";
             public const string Explosion = "Explosion";
-        }
-
-        public class Materials
-        {
-            public const string Background = "Background";
         }
     }
 }

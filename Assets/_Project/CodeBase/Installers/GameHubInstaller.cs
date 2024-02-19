@@ -1,9 +1,11 @@
-using UnityEngine;
 using Zenject;
 
-public class GameHubInstaller : MonoInstaller
+namespace _Project.CodeBase.Installers
 {
-    public override void InstallBindings()
+    public class GameHubInstaller : MonoInstaller
     {
+        public override void InstallBindings()
+        {
+        }
     }
 }

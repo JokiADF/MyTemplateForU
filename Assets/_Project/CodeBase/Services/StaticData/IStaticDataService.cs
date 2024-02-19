@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 
-namespace CodeBase.Services.StaticDataService
+namespace _Project.CodeBase.Services.StaticData
 {
     public interface IStaticDataService
     {

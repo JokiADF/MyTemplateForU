@@ -1,11 +1,10 @@
 using System.Threading.Tasks;
-using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Services.AssetManagement;
+using _Project.CodeBase.Infrastructure.AssetManagement;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Infrastructure.Factory
+namespace _Project.CodeBase.Infrastructure.Factory
 {
     public class GameFactory : IGameFactory
     {

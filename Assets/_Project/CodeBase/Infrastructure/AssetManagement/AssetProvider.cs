@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace CodeBase.Infrastructure.AssetManagement
+namespace _Project.CodeBase.Infrastructure.AssetManagement
 {
     public class AssetProvider : IAssetProvider
     {

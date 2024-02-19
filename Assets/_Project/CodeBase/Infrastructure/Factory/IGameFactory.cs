@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure.Factory
+namespace _Project.CodeBase.Infrastructure.Factory
 {
     public interface IGameFactory
     {

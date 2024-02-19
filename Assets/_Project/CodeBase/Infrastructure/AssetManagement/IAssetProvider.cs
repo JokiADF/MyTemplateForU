@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 
-namespace CodeBase.Infrastructure.AssetManagement
+namespace _Project.CodeBase.Infrastructure.AssetManagement
 {
     public interface IAssetProvider
     {
